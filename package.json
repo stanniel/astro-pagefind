@@ -13,6 +13,7 @@
   "bugs": "https://github.com/stanniel/astro-pagefind/issues",
   "homepage": "https://github.com/stanniel/astro-pagefind",
   "publishConfig": {
+    "access": "public",
     "types": "./dist/index.d.ts",
     "exports": {
       ".": "./dist/index.js",
@@ -37,7 +38,7 @@
     "build": "tsc -b",
     "typecheck": "tsc --noEmit",
     "check": "biome check --error-on-warnings",
-    "release": "echo \"Error: no release specified\" && exit 1",
+    "release": "pnpm run build && pnpm publish",
     "test": "vitest"
   },
 
