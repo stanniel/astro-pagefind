@@ -1,0 +1,15 @@
+---
+---
+
+<div>
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+<script>
+  // pagefind ui can't handle themes automatically
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  if (mq.matches) {
+    document.documentElement.setAttribute("data-pf-theme", "dark");
+  }
+</script>

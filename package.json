@@ -1,0 +1,64 @@
+{
+  "name": "@stanniel/astro-pagefind",
+  "description": "Add Pagefind to your Astro projects",
+  "version": "0.1.0",
+  "type": "module",
+  "types": "./src/index.ts",
+  "author": "Stefan Stankovic <stefan993@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stanniel/astro-pagefind.git"
+  },
+  "bugs": "https://github.com/stanniel/astro-pagefind/issues",
+  "homepage": "https://github.com/stanniel/astro-pagefind",
+  "publishConfig": {
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": "./dist/index.js",
+      "./pagefind.d.ts": "./src/pagefind.d.ts",
+      "./package.json": "./package.json"
+    },
+    "files": [
+      "dist",
+      "src/pagefind.d.ts"
+    ]
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./pagefind.d.ts": "./src/pagefind.d.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "dev": "pnpm run --filter=example-search-api dev",
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit",
+    "check": "biome check --error-on-warnings",
+    "release": "echo \"Error: no release specified\" && exit 1",
+    "test": "vitest"
+  },
+
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "withastro",
+    "pagefind",
+    "search"
+  ],
+  "packageManager": "pnpm@10.28.0",
+  "peerDependencies": {
+    "astro": "^6.0.0"
+  },
+  "dependencies": {
+    "pagefind": "^1.5.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.16",
+    "astro": "^6.0.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  }
+}

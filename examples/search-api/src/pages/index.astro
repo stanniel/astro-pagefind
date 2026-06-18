@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <ul>
+    In development mode:
+    <li>
+      The search index is populated on-demand. Meaning that in
+      <code>astro dev</code>, as you visit a page, more search results become
+      available.
+    </li>
+    <li>
+      Try it out by doing a seach for "a" before visiting any pages. Then visit
+      an unseen page and try searching again.
+    </li>
+  </ul>
+  <ul>
+    In a production static build:
+    <li>
+      The search index is populated fully. Searching after an
+      <code>astro build</code>
+      and <code>astro preview</code> will yield the results of all pages.
+    </li>
+  </ul>
+</BaseLayout>

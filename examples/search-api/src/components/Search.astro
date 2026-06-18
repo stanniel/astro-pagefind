@@ -1,0 +1,115 @@
+---
+---
+
+<div style="position: relative;">
+  <input
+    type="search"
+    name="search"
+    placeholder="Search"
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
+  >
+  <ul id="search-output">
+    <template id="search-result">
+      <li>
+        <a href="#" role="button">
+          <article>
+            <header>Page Title</header>
+          </article>
+        </a>
+      </li>
+    </template>
+  </ul>
+</div>
+
+<style>
+  #search-output {
+    position: absolute;
+    padding: 0;
+    background-color: var(--pico-background-color);
+    width: 100%;
+    box-shadow: var(--pico-box-shadow);
+  }
+
+  #search-output li {
+    list-style: none;
+  }
+
+  #search-output a {
+    padding: 0;
+  }
+
+  #search-output article {
+    margin: 0;
+  }
+</style>
+
+<script>
+  import type { PagefindSearchFragment } from "/pagefind/pagefind.js";
+
+  let output = document.querySelector("#search-output");
+  let resultTmpl = output?.querySelector("template");
+
+  document.addEventListener("astro:page-load", async () => {
+    output = document.querySelector("#search-output");
+    resultTmpl = output?.querySelector("template");
+
+    const pagefind = await import("/pagefind/pagefind.js");
+    await pagefind.init();
+
+    document
+      .querySelector("input")
+      ?.addEventListener("input", async function () {
+        if (this.value === "") clearOutput();
+
+        const search = await pagefind.debouncedSearch(this.value);
+        if (search) {
+          // if you want to skip a search on empty string
+          // you'll have to do your own debounce
+          // if you don't - they will race :)
+          if (this.value === "") return clearOutput();
+
+          if (search.results.length > 0) {
+            clearOutput();
+            await Promise.all(search.results.map((r) => r.data().then(render)));
+          } else {
+            renderNoResults();
+          }
+        }
+      });
+  });
+
+  function clearOutput() {
+    if (!output) return;
+    output.replaceChildren();
+  }
+
+  function renderNoResults() {
+    if (!output) return;
+
+    const li = document.createElement("li");
+    li.textContent = "No results found";
+    li.style.setProperty("width", "100%");
+    li.style.setProperty("list-style", "none");
+    li.style.setProperty("padding", "2rem");
+
+    output.replaceChildren(li);
+  }
+
+  function render(fragment: PagefindSearchFragment) {
+    if (!output || !resultTmpl) return;
+
+    const resultEl = document.importNode(resultTmpl.content, true);
+    const a = resultEl.querySelector("a");
+    const article = resultEl.querySelector("article");
+    const header = resultEl.querySelector("header");
+
+    if (a) a.href = fragment.url;
+    if (header) header.textContent = fragment.meta.title ?? "";
+    if (article) article.insertAdjacentHTML("beforeend", fragment.excerpt);
+
+    output.appendChild(resultEl);
+  }
+</script>
