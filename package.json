@@ -19,11 +19,7 @@
       ".": "./dist/index.js",
       "./pagefind.d.ts": "./src/pagefind.d.ts",
       "./package.json": "./package.json"
-    },
-    "files": [
-      "dist",
-      "src/pagefind.d.ts"
-    ]
+    }
   },
   "exports": {
     ".": "./src/index.ts",
@@ -31,7 +27,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "src"
+    "dist",
+    "src/pagefind.d.ts"
   ],
   "scripts": {
     "dev": "pnpm run --filter=example-search-api dev",
