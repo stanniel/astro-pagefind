@@ -1,7 +1,7 @@
 {
   "name": "@stanniel/astro-pagefind",
   "description": "Add Pagefind to your Astro projects",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "types": "./src/index.ts",
   "author": "Stefan Stankovic <stefan993@gmail.com>",
