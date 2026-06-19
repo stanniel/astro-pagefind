@@ -1,6 +1,6 @@
 # Astro-Pagefind
 
-[![CI](https://github.com/stanniel/astro-pagefind/actions/workflows/ci.yaml/badge.svg)](https://github.com/stanniel/astro-pagefind/actions/workflows/ci.yaml)
+[![CI](https://github.com/stanniel/astro-pagefind/actions/workflows/ci.yaml/badge.svg)](https://github.com/stanniel/astro-pagefind/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@stanniel/astro-pagefind)](https://www.npmjs.com/package/@stanniel/astro-pagefind)
 
 [Astro](https://astro.build) integration for [Pagefind](https://pagefind.app).
