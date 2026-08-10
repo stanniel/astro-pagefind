@@ -43,5 +43,3 @@ jobs:
 
       - name: Release
         run: pnpm run release --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
