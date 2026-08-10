@@ -6,7 +6,7 @@
 [Astro](https://astro.build) integration for [Pagefind](https://pagefind.app).
 
 ## Prerequisites
-- Astro 6
+- Any Astro 6 version, Astro 7 at 7.0.7 or above
 - Static build outputs only
 
 Pagefind indexes static HTML output. Only prerendered routes will be included in the search index.

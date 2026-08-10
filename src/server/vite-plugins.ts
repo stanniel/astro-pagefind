@@ -12,7 +12,7 @@ export function vitePluginsPagefind(
   state: PagefindStateInstance,
 ): Plugins {
   return [
-    {
+    command === "dev" && {
       name: "vite-plugin-pagefind",
       applyToEnvironment(environment) {
         return environment.name === "client";
@@ -22,11 +22,6 @@ export function vitePluginsPagefind(
           id: new RegExp(`^${VIRTUAL_PAGEFIND_MODULE_ID}$`),
         },
         handler() {
-          if (command !== "dev") {
-            throw new Error(
-              "virtual:pagefind cannot be used outside of dev mode",
-            );
-          }
           return VIRTUAL_PAGEFIND_RESOLVED_MODULE_ID;
         },
       },
@@ -57,7 +52,11 @@ export function vitePluginsPagefind(
       resolveId: {
         filter: { id: CLIENT_MODULE_PATTERN },
         async handler(source, importer, _options) {
-          if (command !== "dev") return { id: source, external: true };
+          if (command !== "dev")
+            return {
+              id: source,
+              external: true,
+            };
 
           const file = fileURLToPath(
             new URL("../client/index.js", import.meta.url),
